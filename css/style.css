@@ -1,0 +1,135 @@
+
+body{
+    background-color: rgb(214, 205, 205);
+}
+.secretaria-btn{
+    background-color: white;
+}
+
+.secretaria-btn:hover {
+    transform: scale(1.1); /* Se hace un poco más grande */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important; /* Sombra más fuerte */
+    filter: brightness(1.1); /* Brilla un poquito */
+    background-color: white;
+}
+
+/* Quita el fondo azul al hacer clic (active) y al estar seleccionado (focus) */
+.secretaria-btn:active, 
+.secretaria-btn:focus, 
+.secretaria-btn:focus-visible {
+    background-color: white !important;
+    outline: none !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important; /* Mantenemos la sombra */
+    border: none !important;
+}
+
+.chat-animado {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; /* Evita clics cuando está oculto */
+}
+
+.chat-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+}
+
+#chatWindow .card-header {
+    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
+    border-bottom: none; 
+}
+
+/* Color difuminado del botón enviar y de la cabecera "Secretaría Virtual" */
+#chatWindow .card-footer .btn-primary {
+    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
+    border: none !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+}
+
+/* Sombra más fuerte al cuadrado del texto (input) cuando escribes */
+#chatWindow .card-footer .form-control:focus {
+    box-shadow: 0 0 8px rgba(43, 108, 176, 0.5) !important;
+    border-color: #2B6CB0 !important;
+}
+
+/* Sombra general de la ventana del chat más marcada */
+#chatWindow {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* MEDIA QUERIES - RESPONSIVE */
+
+/* Móviles pequeños (hasta 576px) */
+@media (max-width: 576px) {
+    #chatWindow {
+        width: calc(100vw - 20px) !important;
+        max-width: 100% !important;
+        position: fixed !important;
+        bottom: 90px !important;
+        right: 10px !important;
+    }
+    
+    #chatWindow .card-body {
+        height: 250px !important;
+    }
+    
+    .secretaria-btn {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .fixed-bottom {
+        padding: 10px !important;
+    }
+
+}
+
+/* Tablets (577px - 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    #chatWindow {
+        width: 350px !important;
+    }
+    
+    #chatWindow .card-body {
+        height: 320px !important;
+    }
+    
+    .secretaria-btn {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
+/* Ordenadores pequeño (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    #chatWindow {
+        width: 360px !important;
+    }
+    
+    #chatWindow .card-body {
+        height: 350px !important;
+    }
+    
+    .secretaria-btn {
+        width: 75px !important;
+        height: 75px !important;
+    }
+}
+
+/* Ordenadores grande (993px en adelante) */
+@media (min-width: 993px) {
+    #chatWindow {
+        width: 380px !important;
+    }
+    
+    #chatWindow .card-body {
+        height: 400px !important;
+    }
+    
+    .secretaria-btn {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
