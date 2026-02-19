@@ -35,10 +35,14 @@ body{
     transform: translateY(0) !important;
     pointer-events: auto !important;
 }
-
 #chatWindow .card-header {
     background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
-    border-bottom: none; 
+    /* QUITAMOS BORDES Y SOMBRAS EXTRA */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    /* Forzamos que el color llegue hasta el borde redondeado */
+    margin: -1px -1px 0 -1px; 
 }
 
 /* Color difuminado del botón enviar y de la cabecera "Secretaría Virtual" */
@@ -56,7 +60,10 @@ body{
 
 /* Sombra general de la ventana del chat más marcada */
 #chatWindow {
+    /* Mantenemos tu sombra pero aseguramos que el borde sea limpio */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+    border: none !important;
+    overflow: hidden; /* Esto corta cualquier esquina blanca que sobresalga */
 }
 
 /* MEDIA QUERIES - RESPONSIVE */
