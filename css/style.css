@@ -1,7 +1,7 @@
-
 body{
     background-color: rgb(214, 205, 205);
 }
+
 .secretaria-btn{
     background-color: white;
 }
@@ -47,7 +47,7 @@ body{
 
 /* Color difuminado del botón enviar y de la cabecera "Secretaría Virtual" */
 #chatWindow .card-footer .btn-primary {
-    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
+    background: linear-gradient(to bottom, #215287 0%, #2B6CB0 50%, #215387 100%) !important;
     border: none !important;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
 }
@@ -66,8 +66,77 @@ body{
     overflow: hidden; /* Esto corta cualquier esquina blanca que sobresalga */
 }
 
-/* MEDIA QUERIES - RESPONSIVE */
+/* Estilo del círculo de la foto */
+.avatar-circulo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #ddd;
+    flex-shrink: 0; /* Evita que la foto se aplaste */
+}
 
+.avatar-circulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Imagen de la secretaria (normal) */
+.d-flex:not(.flex-row-reverse) .avatar-circulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* IMAGEN DEL USUARIO (MÁS GRANDE) */
+.flex-row-reverse .avatar-circulo img {
+    width: 50px !important;    /* La hacemos un poco más grande aún para tener margen */
+    height: 50px !important;
+    max-width: none !important;
+    object-fit: cover;
+    
+    /* Con translateY subimos la imagen. 
+       Un número negativo como -5px la empuja hacia ARRIBA. 
+       Ajusta este número hasta que veas la cara perfecta. */
+    transform: translateY(-8px) !important; 
+    
+    /* Aseguramos que no se mueva lateralmente */
+    margin-left: -6px !important;
+}
+
+/* Estilo base de las burbujas */
+.burbuja-chat {
+    max-width: 75%;
+    white-space: normal;
+    text-align: left;
+    border-radius: 12px !important;
+    font-weight: normal;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.432) !important;
+}
+
+/* Color Secretaria (Blanco/Grisáceo) */
+.burbuja-secretaria {
+    background-color: rgb(255, 255, 255) !important;
+    color: #000000 !important;
+    border-bottom-left-radius: 2px !important; /* Pico de chat */
+}
+
+/* Color Usuario (Azul claro difuminado) */
+.burbuja-usuario {
+    background: linear-gradient(to bottom, #215287 0%, #2B6CB0 50%, #215387 100%) !important;
+    color: white !important;
+    border-bottom-right-radius: 2px !important; /* Pico de chat */
+}
+
+/* Forzar que el card-body se vea bien con flex */
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* MEDIA QUERIES - RESPONSIVE */
 /* Móviles pequeños (hasta 576px) */
 @media (max-width: 576px) {
     #chatWindow {
