@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatWindow = document.getElementById('chatWindow'); // Ventana de chat
     const closeChat = document.getElementById('closeChat'); // El botón 'X' de la cabecera para cerrar el chat
     const chatBody = document.getElementById('chatBody'); // Área de visualización de mensajes
-    const input = chatWindow.querySelector('input'); // Footer (donde el usuario escribe)
+    
+    // CAMBIO: Ahora seleccionamos el 'textarea' en lugar del 'input'
+    const input = chatWindow.querySelector('textarea'); 
+    
     const sendBtn = chatWindow.querySelector('.btn-primary'); // Botón de Enviar
 
     // Definimos las rutas de las imágenes
@@ -60,12 +63,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (texto) { // Solo enviamos si el mensaje no está vacío
             agregarMensaje(texto, false); // Añadimos mensaje como usuario (esSecretaria = false)
             input.value = ""; // Limpiamos el cuadro de texto
+            input.style.height = 'auto'; // Reseteamos la altura del textarea al enviar
         }
     }
 
-    // Al pulsar la tecla 'Enter' dentro del input
+    // Al pulsar el botón de enviar
     sendBtn.addEventListener('click', enviar);
-    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviar(); });
+
+    // Ajuste para el textarea: permite Enter para enviar y Shift+Enter para nueva línea
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Evita que el Enter cree una línea nueva en el textarea
+            enviar();
+        }
+    });
+
+    // Efecto para que el textarea crezca según escribes (como WhatsApp)
+    input.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
 
     // Al pulsar el botón circular de la secretaria (abre/cierra el chat)
     btnSecretaria.addEventListener('click', () => { 
