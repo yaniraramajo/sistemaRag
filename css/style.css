@@ -4,8 +4,52 @@ body {
 }
 
 /* --- BOTÓN FLOTANTE (SECRETARIA) --- */
+.secretaria-btn-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.halo {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(43, 108, 176, 0.25);
+    animation: halo-pulse 2.5s ease-out infinite;
+    pointer-events: none;
+}
+
+.halo-1 {
+    width: 100%;
+    height: 100%;
+    animation-delay: 0s;
+}
+
+.halo-2 {
+    width: 100%;
+    height: 100%;
+    animation-delay: 0.8s;
+}
+
+@keyframes halo-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.9);
+        opacity: 0;
+    }
+}
+
 .secretaria-btn {
     background-color: white;
+    position: relative;
+    z-index: 1;
+    width: 80px !important;
+    height: 80px !important;
 }
 
 .secretaria-btn:hover {
@@ -15,7 +59,6 @@ body {
     background-color: white;
 }
 
-/* Quita el fondo azul al hacer clic (active) y al estar seleccionado (focus) */
 .secretaria-btn:active, 
 .secretaria-btn:focus, 
 .secretaria-btn:focus-visible {
@@ -25,47 +68,390 @@ body {
     border: none !important;
 }
 
-/* --- VENTANA DE CHAT --- */
-#chatWindow {
+/* --- CONTENEDOR DEL CHAT --- */
+.contenedor-chat {
+    border-radius: 15px !important;
+    overflow: hidden !important;
+    border: none !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
-    border: none !important;
-    overflow: hidden; 
 }
 
-#chatWindow .card-header {
-    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
-    border: none !important;
-    margin: -1px -1px 0 -1px; 
-}
-
-#chatWindow .card-footer .btn-primary {
-    background: linear-gradient(to bottom, #215287 0%, #2B6CB0 50%, #215387 100%) !important;
-    border: none !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
-}
-
-#chatWindow .card-footer .form-control:focus {
-    box-shadow: 0 0 8px rgba(43, 108, 176, 0.5) !important;
-    border-color: #2B6CB0 !important;
-}
-
-.card-body {
+/* ========================================
+   PANTALLA DE BIENVENIDA
+======================================== */
+.pantalla-bienvenida {
+    background-color: white;
+    position: relative;
     display: flex;
     flex-direction: column;
+    overflow: visible;
 }
 
-/* --- AVATARES (CÍRCULOS Y FOTOS) --- */
+/* HEADER CON DEGRADADO */
+.encabezado-degradado {
+    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%);
+    height: 100px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1rem 1rem 0;
+    flex-shrink: 0;
+}
+
+.boton-cerrar-bienvenida {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.boton-cerrar-bienvenida:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* LOGO QUE SOBRESALE HACIA ABAJO */
+.logo-sobresaliente {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-halo {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(43, 108, 176, 0.15);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.logo-halo-1 {
+    width: 110px;
+    height: 110px;
+    animation: float-1 4s ease-in-out infinite;
+}
+
+.logo-halo-2 {
+    width: 122px;
+    height: 122px;
+    animation: float-2 5.5s ease-in-out infinite;
+}
+
+.logo-halo-3 {
+    width: 134px;
+    height: 134px;
+    animation: float-3 7s ease-in-out infinite;
+}
+
+@keyframes float-1 {
+    0%   { transform: translate(0px, 0px); }
+    25%  { transform: translate(6px, -5px); }
+    50%  { transform: translate(-5px, 4px); }
+    75%  { transform: translate(4px, 6px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes float-2 {
+    0%   { transform: translate(0px, 0px); }
+    20%  { transform: translate(-7px, 4px); }
+    50%  { transform: translate(5px, -6px); }
+    80%  { transform: translate(-4px, -3px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes float-3 {
+    0%   { transform: translate(0px, 0px); }
+    30%  { transform: translate(5px, 7px); }
+    60%  { transform: translate(-6px, -4px); }
+    90%  { transform: translate(3px, -5px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.circulo-logo {
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+}
+
+.circulo-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* CONTENIDO DE BIENVENIDA */
+.contenido-bienvenida {
+    padding: 80px 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-height: 0;
+    justify-content: space-between;
+}
+
+.titulo-bienvenida {
+    font-size: 1.4rem;
+    color: #333;
+    margin: 0;
+    font-weight: 400;
+    flex-shrink: 0;
+}
+
+.texto-azul {
+    color: #2B6CB0;
+    font-weight: 600;
+}
+
+.subtitulo-bienvenida {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.info-bienvenida {
+    background: #f8f9fa;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.etiqueta-bienvenida {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.cuadricula-botones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Input siempre visible al fondo */
+.contenido-bienvenida .contenedor-input {
+    flex-shrink: 0;
+}
+
+.boton-rapido {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+.boton-rapido:hover {
+    background: #f8f9fa;
+    border-color: #2B6CB0;
+    color: #2B6CB0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.boton-rapido svg {
+    color: #2B6CB0;
+    width: 24px;
+    height: 24px;
+}
+
+.boton-rapido span {
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ========================================
+   INPUT COMPARTIDO (estilo cuadrado tipo Iberia)
+======================================== */
+.contenedor-input {
+    width: 100%;
+    display: flex;
+    gap: 0;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
+
+.contenedor-input:focus-within {
+    border-color: #2B6CB0;
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+}
+
+.input-mensaje {
+    flex: 1;
+    border: none !important;
+    outline: none !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem;
+    background: transparent !important;
+    box-shadow: none !important;
+    resize: none !important;
+    line-height: 1.5;
+    font-family: inherit;
+    height: 48px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.input-mensaje:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.boton-enviar {
+    background: linear-gradient(to bottom, #215287 0%, #2B6CB0 50%, #215387 100%) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: 50px;
+    min-height: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.boton-enviar:hover {
+    filter: brightness(1.15);
+}
+
+.boton-enviar:active {
+    filter: brightness(0.9);
+}
+
+/* ========================================
+   PANTALLA DE CHAT
+======================================== */
+.pantalla-chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+}
+
+/* --- HEADER CON LOGO --- */
+.encabezado-chat {
+    background: linear-gradient(to bottom, #215387 0%, #2B6CB0 50%, #215387 100%) !important;
+    padding: 1rem 1.25rem;
+    border: none !important;
+    flex-shrink: 0;
+}
+
+.contenedor-logo-chat {
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.logo-chat {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.boton-accion-encabezado {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 5px;
+}
+
+.boton-accion-encabezado:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- ÁREA DE MENSAJES --- */
+.area-mensajes {
+    background-color: #ffffff;
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.area-mensajes::-webkit-scrollbar {
+    width: 6px;
+}
+
+.area-mensajes::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.area-mensajes::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* --- AVATARES --- */
 .avatar-circulo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
     background-color: white;
-    border: 1px solid #ddd;
+    border: 2px solid #e0e0e0;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .avatar-circulo img {
@@ -74,51 +460,195 @@ body {
     object-fit: cover;
 }
 
-/* Foto Usuario (Más grande) */
 .flex-row-reverse .avatar-circulo img {
     width: 45px !important;
     height: 45px !important;
     max-width: none !important;
-    transform: translateY(-8px) !important;  /* Con translateY subimos la imagen. Un número negativo empuja la foto hacia ARRIBA*/
+    transform: translateY(-5px) !important;
     margin-left: -6px !important;
 }
 
-/* --- BURBUJAS DE TEXTO --- */
-.burbuja-chat {
+/* --- BURBUJAS DE MENSAJES --- */
+.burbuja-mensaje {
     max-width: 75%;
-    white-space: normal;
-    text-align: left;
+    padding: 0.75rem 1rem;
     border-radius: 12px !important;
+    font-size: 0.95rem;
+    line-height: 1.4;
     font-weight: normal;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important; /* Sombra más fuerte*/
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Burbuja mensaje Secretaría de color blanco */
 .burbuja-secretaria {
     background-color: white !important;
     color: #000000 !important;
     border-bottom-left-radius: 2px !important;
 }
 
-/* Burbuja mensaje Usuario con color difuminado */
 .burbuja-usuario {
     background: linear-gradient(to bottom, #215287 0%, #2B6CB0 50%, #215387 100%) !important;
     color: white !important;
     border-bottom-right-radius: 2px !important;
 }
 
-/* --- RESPONSIVE (MEDIA QUERIES) --- */
+/* ANIMACIÓN DE CARGA */
+.animacion-carga {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border-radius: 12px;
+    max-width: 75%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.puntos-carga {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.punto-carga {
+    width: 8px;
+    height: 8px;
+    background: #2B6CB0;
+    border-radius: 50%;
+    animation: puntoCarga 1.4s infinite ease-in-out;
+}
+
+.punto-carga:nth-child(1) { animation-delay: 0s; }
+.punto-carga:nth-child(2) { animation-delay: 0.2s; }
+.punto-carga:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes puntoCarga {
+    0%, 60%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* --- FOOTER CON INPUT --- */
+.pie-chat {
+    background-color: white;
+    padding: 1rem 1.25rem;
+    border-top: none;
+    flex-shrink: 0;
+}
+
+.pie-chat .contenedor-input {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   RESPONSIVE - MEDIA QUERIES
+======================================== */
+
+/* Móviles pequeños (hasta 576px) */
 @media (max-width: 576px) {
-    #chatWindow {
-        width: calc(100vw - 20px) !important;
+    .contenedor-chat {
+        width: 100vw !important;
         max-width: 100% !important;
+        height: 100vh !important;
         position: fixed !important;
-        bottom: 90px !important;
-        right: 10px !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: 0 !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
     }
 
-    #chatWindow .card-body {
-        height: 250px !important;
+    .pantalla-bienvenida {
+        height: 100vh;
+    }
+
+    .pantalla-chat {
+        height: 100vh;
+    }
+
+    .encabezado-degradado {
+        height: 75px;
+    }
+
+    .logo-sobresaliente {
+        top: 35px;
+    }
+
+    .circulo-logo {
+        width: 85px;
+        height: 85px;
+        padding: 10px;
+    }
+
+    .logo-halo-1 { width: 80px; height: 80px; }
+    .logo-halo-2 { width: 90px; height: 90px; }
+    .logo-halo-3 { width: 100px; height: 100px; }
+
+    .contenido-bienvenida {
+        padding: 60px 1rem 1rem;
+        gap: 0.65rem;
+    }
+
+    .titulo-bienvenida {
+        font-size: 1.1rem;
+    }
+
+    .subtitulo-bienvenida {
+        font-size: 0.9rem;
+    }
+
+    .info-bienvenida {
+        padding: 0.65rem 0.9rem;
+        font-size: 0.82rem;
+    }
+
+    .etiqueta-bienvenida {
+        font-size: 0.82rem;
+    }
+
+    .cuadricula-botones {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+    }
+
+    .boton-rapido {
+        padding: 0.6rem 0.3rem;
+        font-size: 0.72rem;
+        gap: 0.3rem;
+    }
+
+    .boton-rapido svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .encabezado-chat {
+        padding: 0.75rem 1rem;
+    }
+
+    .contenedor-logo-chat {
+        width: 38px;
+        height: 38px;
+    }
+
+    .encabezado-chat h6 {
+        font-size: 0.9rem;
+    }
+
+    .encabezado-chat small {
+        font-size: 0.7rem;
+    }
+
+    .pie-chat {
+        padding: 0.5rem 1rem 0.75rem;
+    }
+
+    .secretaria-btn-wrapper {
+        width: 60px;
+        height: 60px;
     }
 
     .secretaria-btn {
@@ -127,17 +657,33 @@ body {
     }
 
     .fixed-bottom {
-        padding: 10px !important;
+        padding: 0.75rem !important;
+    }
+
+    /* Ocultar botón flotante cuando el chat está abierto */
+    .secretaria-btn-wrapper.chat-abierto {
+        display: none !important;
+    }
+
+    input, textarea, select {
+        font-size: 16px !important;
     }
 }
 
+/* Tablets (577px - 768px) */
 @media (min-width: 577px) and (max-width: 768px) {
-    #chatWindow {
-        width: 350px !important;
+    .contenedor-chat {
+        width: 420px !important;
     }
-
-    #chatWindow .card-body {
-        height: 320px !important;
+    
+    .pantalla-bienvenida,
+    .pantalla-chat {
+        height: 660px;
+    }
+    
+    .secretaria-btn-wrapper {
+        width: 70px;
+        height: 70px;
     }
 
     .secretaria-btn {
@@ -146,13 +692,20 @@ body {
     }
 }
 
+/* Desktop pequeño (769px - 992px) */
 @media (min-width: 769px) and (max-width: 992px) {
-    #chatWindow {
-        width: 360px !important;
+    .contenedor-chat {
+        width: 460px !important;
     }
-
-    #chatWindow .card-body {
-        height: 350px !important;
+    
+    .pantalla-bienvenida,
+    .pantalla-chat {
+        height: 680px;
+    }
+    
+    .secretaria-btn-wrapper {
+        width: 75px;
+        height: 75px;
     }
 
     .secretaria-btn {
@@ -161,17 +714,36 @@ body {
     }
 }
 
+/* Desktop grande (993px en adelante) */
 @media (min-width: 993px) {
-    #chatWindow {
-        width: 380px !important;
+    .contenedor-chat {
+        width: 480px !important;
     }
-
-    #chatWindow .card-body {
-        height: 400px !important;
+    
+    .pantalla-bienvenida,
+    .pantalla-chat {
+        height: 700px;
+    }
+    
+    .secretaria-btn-wrapper {
+        width: 80px;
+        height: 80px;
     }
 
     .secretaria-btn {
         width: 80px !important;
         height: 80px !important;
+    }
+}
+
+/* Dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .btn, .form-control, .boton-rapido {
+        min-height: 44px !important;
+    }
+    
+    .secretaria-btn {
+        min-width: 60px !important;
+        min-height: 60px !important;
     }
 }
