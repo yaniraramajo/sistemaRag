@@ -1,7 +1,5 @@
-// Espera a que todo el HTML esté cargado
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- SELECCIÓN DE ELEMENTOS ---
     const botonSecretaria = document.getElementById('botonSecretaria');
     const ventanaChat = document.querySelector('.contenedor-chat');
     const pantallaBienvenida = document.getElementById('pantallaBienvenida');
@@ -16,11 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const botonEnviarBienvenida = document.getElementById('botonEnviarBienvenida');
     const botonesRapidos = document.querySelectorAll('.boton-rapido');
 
-    // Imágenes
     const FOTO_SECRETARIA = "img/SecretariaVirtual.png";
     const FOTO_USUARIO = "img/Usuario.png";
 
-    // --- FUNCIÓN PARA AGREGAR MENSAJES ---
+    // FUNCIÓN PARA AGREGAR MENSAJES
     function agregarMensaje(texto, esSecretaria = false) {
         const mensajeDiv = document.createElement('div');
         mensajeDiv.className = `d-flex align-items-end mb-3 ${esSecretaria ? '' : 'flex-row-reverse'}`;
@@ -42,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         areaMensajes.scrollTop = areaMensajes.scrollHeight;
     }
 
-    // --- ANIMACIÓN DE CARGA (SOLO 3 PUNTOS) ---
+    // ANIMACIÓN DE CARGA (SOLO 3 PUNTOS)
     function mostrarCargando() {
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'd-flex align-items-end mb-3';
@@ -72,21 +69,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- CAMBIAR DE PANTALLA DE BIENVENIDA A CHAT ---
+    // CAMBIAR DE PANTALLA DE BIENVENIDA A CHAT
     function irAlChat() {
         pantallaBienvenida.classList.add('d-none');
         pantallaChat.classList.remove('d-none');
     }
 
-    // --- MENSAJE DE BIENVENIDA EN CHAT ---
+    // MENSAJE DE BIENVENIDA EN CHAT
     function mensajeBienvenida() {
         agregarMensaje("¡Hola! 👋 Soy la secretaria virtual del colegio. ¿En qué puedo ayudarte?", true);
     }
 
-    // --- FUNCIÓN DE ENVÍO ---
+    // FUNCIÓN DE ENVÍO 
     function enviarMensaje(texto) {
         if (texto.trim()) {
-            // Cambiar a pantalla de chat si estamos en bienvenida
+            // Cambiar a pantalla de chat si estamos en la pantalla bienvenida
             if (!pantallaBienvenida.classList.contains('d-none')) {
                 irAlChat();
                 mensajeBienvenida();
@@ -111,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- BOTONES DE ACCESO RÁPIDO EN BIENVENIDA ---
+    // BOTONES DE ACCESO RÁPIDO EN BIENVENIDA 
     botonesRapidos.forEach(btn => {
         btn.addEventListener('click', function() {
             const mensaje = this.getAttribute('data-mensaje');
@@ -119,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- ENVIAR DESDE INPUT DE BIENVENIDA ---
+    // ENVIAR DESDE INPUT DE BIENVENIDA
     botonEnviarBienvenida.addEventListener('click', () => {
         enviarMensaje(inputBienvenida.value);
     });
@@ -131,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- AUTO-RESIZE DE AMBOS TEXTAREA ---
+    // AUTO-RESIZE DE AMBOS TEXTAREA
     inputBienvenida.addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 120) + 'px';
@@ -142,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.height = Math.min(this.scrollHeight, 120) + 'px';
     });
 
-    // --- ENVIAR DESDE CHAT ---
+    // ENVIAR DESDE CHAT
     botonEnviar.addEventListener('click', () => {
         enviarMensaje(inputMensaje.value);
     });
@@ -154,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- ABRIR CHAT ---
+    // ABRIR CHAT
     botonSecretaria.addEventListener('click', () => {
         ventanaChat.classList.toggle('d-none');
         const wrapper = document.querySelector('.secretaria-btn-wrapper');
@@ -166,19 +163,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- CERRAR DESDE BIENVENIDA ---
+    // CERRAR DESDE BIENVENIDA
     cerrarBienvenida.addEventListener('click', () => {
         ventanaChat.classList.add('d-none');
         document.querySelector('.secretaria-btn-wrapper').classList.remove('chat-abierto');
     });
 
-    // --- CERRAR DESDE CHAT ---
+    // CERRAR DESDE CHAT
     cerrarChat.addEventListener('click', () => {
         ventanaChat.classList.add('d-none');
         document.querySelector('.secretaria-btn-wrapper').classList.remove('chat-abierto');
     });
 
-    // --- LIMPIAR CHAT (BOTÓN EDITAR) ---
+    // LIMPIAR CHAT (BOTÓN EDITAR)
     editarChat.addEventListener('click', () => {
         areaMensajes.innerHTML = '';
         pantallaChat.classList.add('d-none');
