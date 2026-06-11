@@ -3,7 +3,77 @@ body {
     background-color: rgb(214, 205, 205);
 }
 
-/* --- BOTÓN FLOTANTE (SECRETARIA) --- */
+/* --- BOCADILLO --- */
+.bocadillo {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    background: white;
+    border-radius: 12px 12px 0 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    width: 200px;
+    font-size: 0.85rem;
+    color: #333;
+    line-height: 1.4;
+    animation: bocadillo-entrada 0.3s ease;
+    z-index: 10;
+}
+
+.bocadillo p {
+    margin: 0 0 0.2rem 0;
+}
+
+.bocadillo p:last-child {
+    margin: 0;
+}
+
+.bocadillo::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 18px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 8px solid white;
+}
+
+.bocadillo-cerrar {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.bocadillo-cerrar:hover {
+    color: #333;
+}
+
+@keyframes bocadillo-entrada {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ESTADO BLOQUEADO (IA respondiendo) --- */
+.input-mensaje:disabled {
+    background: #f8f9fa !important;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.contenedor-input.bloqueado {
+    border-color: #2B6CB0;
+    opacity: 0.7;
+}
+
 .secretaria-btn-wrapper {
     position: relative;
     width: 80px;
@@ -533,7 +603,7 @@ body {
 /* --- FOOTER CON INPUT --- */
 .pie-chat {
     background-color: white;
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1.25rem;
     border-top: none;
     flex-shrink: 0;
 }
@@ -745,4 +815,35 @@ body {
         min-width: 60px !important;
         min-height: 60px !important;
     }
+}
+/* --- MARKDOWN EN BURBUJAS --- */
+.burbuja-secretaria p {
+    margin: 0 0 0.5rem 0;
+}
+
+.burbuja-secretaria p:last-child {
+    margin: 0;
+}
+
+.burbuja-secretaria ul,
+.burbuja-secretaria ol {
+    margin: 0.25rem 0 0.5rem 1.25rem;
+    padding: 0;
+}
+
+.burbuja-secretaria li {
+    margin-bottom: 0.25rem;
+}
+
+.burbuja-secretaria strong {
+    color: #215387;
+}
+
+.burbuja-secretaria h1,
+.burbuja-secretaria h2,
+.burbuja-secretaria h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #215387;
+    margin: 0.5rem 0 0.25rem;
 }
